@@ -19,17 +19,19 @@ void detab(char s[])
 		}
 		else
 		{
-			putchar(c);
+			putchar(s[i]);
 			++length;
 			if(length >= STEP || c == '\n')
 				length = 0;
 		}
+		++i;
 	}
 }
 
 int getline(char s[], int length)
 {
 	int i;
+	int c;
 	
 	for(i = 0; i < length -2 && (c = getchar()) != EOF && c != '\n'; ++i)
 		s[i] = c;
