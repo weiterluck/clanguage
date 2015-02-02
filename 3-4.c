@@ -14,7 +14,7 @@ void itoa(int n, char s[])
 	do
 	{
 		s[i++] = ABS(n % 10) + '0';
-	}while((n / 10) != 0);
+	}while((n /= 10) != 0);
 	if(sign < 0)
 		s[i++] = '-';
 	s[i] = '\0';
@@ -46,7 +46,7 @@ int main()
 {
 	int n;
 	char s[MAXSIZE];
-	scanf("%d %s", n, s);
+	scanf("%d %s", &n, s);
 	printf("%d \n%s\n", n, s);
 	itoa(n, s);
 	printf("%d\n%s\n", n, s);
