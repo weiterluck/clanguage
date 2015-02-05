@@ -14,7 +14,7 @@ void itoa(int n, char s[])
 	do
 	{
 		s[i++] = ABS(n % 10) + '0';
-	}while((n / 10) != 0);
+	}while((n /= 10) != 0);
 	if(sign < 0)
 		s[i++] = '-';
 	s[i] = '\0';
