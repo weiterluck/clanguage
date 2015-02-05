@@ -1,20 +1,21 @@
 #include <stdio.h>
-#define ABS(x)	((x) < 0 ? -(x) : (x))
+
 #define MAXSIZE	1000
 
 void reverse(char s[]);
-void itoa(int n, char s[]);
+void itob(int n, char s[], int b);
 
-void itoa(int n, char s[])
+void itob(int n, char s[], int b)
 {
 	int i, sign;
-
-	sign = n;	
 	i = 0;
+
+	if((sign = n) < 0)
+		n = -n;
 	do
 	{
-		s[i++] = ABS(n % 10) + '0';
-	}while((n /= 10) != 0);
+		s[i++] = (n % b) <= 9 ? (n % b + '0') : (n % b + 'a' - 10 );
+	}while((n /= b) > 0);
 	if(sign < 0)
 		s[i++] = '-';
 	s[i] = '\0';
@@ -32,11 +33,11 @@ void reverse(char s[])
 	--i;
 	if(s[i] == '\n')
 		--i;
-	while( j < i)
+	while(j < i)
 	{
-		temp = s[j];
-		s[j] = s[i];
-		s[i] = temp;
+		temp = s[i];
+		s[i] = s[j];
+		s[j] = temp;
 		--i;
 		++j;
 	}
@@ -44,12 +45,11 @@ void reverse(char s[])
 
 int main()
 {
-	int n;
+	int n, b;
 	char s[MAXSIZE];
-	scanf("%d %s", &n, s);
-	printf("%d \n%s\n", n, s);
-	itoa(n, s);
-	printf("%d\n%s\n", n, s);
-	printf("hello!\n");
+	
+	scanf("%d %d", &n, &b);
+	itob(n, s, b);
+	printf("%d,%d,%s\n", n, b, s);
 	return 0;
 }
